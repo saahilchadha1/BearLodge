@@ -1,0 +1,127 @@
+[
+    {
+        "model": "draw.listing",
+        "pk": 1,
+        "fields": {
+            "seller": 4,
+            "monthly_price": "600.00",
+            "street_address": "2539 Durant Ave, Berkeley, CA 94704",
+            "latitude": "37.86832000",
+            "longitude": "-122.25727000",
+            "description": "We are currently looking for subletters to fill a spot in a double for the spring semester! \r\n\r\nLocation: Above Trader Joe's on UniversityRooms: In-unit laundry, living room, kitchen, and 1 washroom. The building comes with a courtyard as well as a roof deck. \r\n\r\nRent:  $600 a month for a double\r\n\r\nAmenities: utilities included. A spot in the parking garage can be negotiated for a separate fee.",
+            "image_url": "https://images.freeimages.com/images/large-previews/ba0/buildings-1229098.jpg"
+        }
+    },
+    {
+        "model": "draw.profile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "is_seller": false,
+            "saved_listings": []
+        }
+    },
+    {
+        "model": "draw.profile",
+        "pk": 2,
+        "fields": {
+            "user": 4,
+            "is_seller": true,
+            "saved_listings": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "draw.message",
+        "pk": 1,
+        "fields": {
+            "from_user": 1,
+            "to_user": 4,
+            "sent_time": "2021-08-07T06:34:47Z",
+            "body": "I was wondering if we can negotiate a price?"
+        }
+    },
+    {
+        "model": "draw.message",
+        "pk": 2,
+        "fields": {
+            "from_user": 4,
+            "to_user": 1,
+            "sent_time": "2021-08-07T06:35:30Z",
+            "body": "What's your offer?"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$LyXyaxIdLruK1o11jcPHAD$Ufmyb52ICM8oXu+OAy22Y3yFkL5YLr10lOezQ7dxPrI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "robert",
+            "first_name": "Robert",
+            "last_name": "Pattinson",
+            "email": "pattinson@email.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-08-07T05:34:16Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$XzBSHy57VfdvMAORg352x1$Abnq/IbQRrgWa8wp1XqMfOT44g3Cif/8dggvjUvFpag=",
+            "last_login": "2021-08-07T05:38:18.036Z",
+            "is_superuser": true,
+            "username": "superusername",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-08-07T05:38:10.850Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$Vk3tmhVj2QjKXEtV1ARk0M$/5lptFoxffDgnvPfXW5l9ZYTGRcnF0IBJ95aOE1WKzE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bojack",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-08-07T06:27:47.686Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$qqgwVLpFcltkiiKOGofHhW$AsS63ZxWO/f+3G5cKibgqWVdgR7dOJOzAWI0x1PK1MM=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "sarah",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-08-07T06:28:23.405Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 class Listing(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
     monthly_price = models.DecimalField(max_digits=12, decimal_places=2)
-    latitude = models.DecimalField(max_digits=10, decimal_places=8)
-    longitude = models.DecimalField(max_digits=10, decimal_places=8)
+    street_address = models.CharField(max_length=50)
+    latitude = models.DecimalField(max_digits=11, decimal_places=8)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8)
     description = models.TextField()
+    image_url = models.CharField(max_length=100)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField()
     saved_listings = models.ManyToManyField(Listing)
     is_seller = models.BooleanField()
 
