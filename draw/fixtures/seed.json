@@ -3,13 +3,26 @@
         "model": "draw.listing",
         "pk": 1,
         "fields": {
-            "seller": 4,
+            "seller": 2,
             "monthly_price": "600.00",
             "street_address": "2539 Durant Ave, Berkeley, CA 94704",
             "latitude": "37.86832000",
             "longitude": "-122.25727000",
-            "description": "We are currently looking for subletters to fill a spot in a double for the spring semester! \r\n\r\nLocation: Above Trader Joe's on UniversityRooms: In-unit laundry, living room, kitchen, and 1 washroom. The building comes with a courtyard as well as a roof deck. \r\n\r\nRent:  $600 a month for a double\r\n\r\nAmenities: utilities included. A spot in the parking garage can be negotiated for a separate fee.",
-            "image_url": "https://images.freeimages.com/images/large-previews/ba0/buildings-1229098.jpg"
+            "description": "We are currently looking for subletters to fill a spot in a double for the spring semester! <br /><br />\r\n\r\n<strong>Location:</strong> Above Trader Joe's on University<br /><br />\r\n\r\n<strong>Rooms:</strong> In-unit laundry, living room, kitchen, and 1 washroom. The building comes with a courtyard as well as a roof deck. <br /><br />\r\n\r\n<strong>Rent:</strong>  $600 a month for a double<br /><br />\r\n\r\n<strong>Amenities:</strong> Utilities included. A spot in the parking garage can be negotiated for a separate fee.<br /><br />",
+            "image_url": "https://drive.google.com/uc?id=17TkigL_LYT2zAUkkjgS-_CGIvbh0TVTK"
+        }
+    },
+    {
+        "model": "draw.listing",
+        "pk": 2,
+        "fields": {
+            "seller": 4,
+            "monthly_price": "800.00",
+            "street_address": "2301 Durant Ave, Berkeley, CA 94704",
+            "latitude": "37.86759900",
+            "longitude": "-122.26325200",
+            "description": "A pair of sophomore girls looking for a third in this two-bedroom apartment.<br /><br />\r\n\r\n<strong>Location:</strong> 2301 Durant <br /><br />\r\n\r\n<strong>Rooms:</strong> 2 bedrooms, 1 bath. Utilities included. <br /><br />\r\n\r\n<strong>Rent:</strong>  $600 a month for a double<br /><br />",
+            "image_url": "https://drive.google.com/uc?id=1TegF4GTy78rK6xnrcH57_UQIeshtKm--"
         }
     },
     {
@@ -29,6 +42,17 @@
             "is_seller": true,
             "saved_listings": [
                 1
+            ]
+        }
+    },
+    {
+        "model": "draw.profile",
+        "pk": 3,
+        "fields": {
+            "user": 2,
+            "is_seller": true,
+            "saved_listings": [
+                2
             ]
         }
     },
@@ -75,15 +99,15 @@
         "pk": 2,
         "fields": {
             "password": "pbkdf2_sha256$260000$XzBSHy57VfdvMAORg352x1$Abnq/IbQRrgWa8wp1XqMfOT44g3Cif/8dggvjUvFpag=",
-            "last_login": "2021-08-07T05:38:18.036Z",
+            "last_login": "2021-08-10T08:20:51Z",
             "is_superuser": true,
             "username": "superusername",
-            "first_name": "",
-            "last_name": "",
+            "first_name": "Test",
+            "last_name": "User",
             "email": "",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2021-08-07T05:38:10.850Z",
+            "date_joined": "2021-08-07T05:38:10Z",
             "groups": [],
             "user_permissions": []
         }
@@ -114,14 +138,15 @@
             "last_login": null,
             "is_superuser": false,
             "username": "sarah",
-            "first_name": "",
-            "last_name": "",
+            "first_name": "Sarah",
+            "last_name": "McCormick",
             "email": "",
             "is_staff": false,
             "is_active": true,
-            "date_joined": "2021-08-07T06:28:23.405Z",
+            "date_joined": "2021-08-07T06:28:23Z",
             "groups": [],
             "user_permissions": []
         }
     }
+
 ]
