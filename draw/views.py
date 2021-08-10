@@ -31,7 +31,7 @@ def login(request):
             else:
                 return redirect('explore')
         else:
-            flash_messages.info(request, "Username or password is incorrect")
+            flash_messages.error(request, "Username or password is incorrect")
             return redirect('login')
     else:
         login_form = CreateLoginForm()
@@ -45,22 +45,27 @@ def register(request):
         user_form = CreateUserForm(request.POST)
         is_seller_form = CreateIsSellerForm(request.POST)
 
-        if user_form.is_valid(): 
-            match = User.objects.get(email=user_form.cleaned_data.get('email'),)
-            if match is not None:
-                flash_messages.error(request, 'Email address exists')     
+        if user_form.is_valid():
+            email_get = user_form.cleaned_data.get('email')
+            post_fix = email_get.split('@')
+            if post_fix[1] != 'berkeley.edu':
+                flash_messages.error(request, 'Email has to be Berkeley email')
                 return redirect('register')
-        
-            # usage refer to https://stackoverflow.com/questions/12848605/django-modelform-what-is-savecommit-false-used-for       
-            user = user_form.save(commit=False)
-            user.username = user.email
-            user.set_password(user_form.cleaned_data.get('password')) # use set_password to set the password as raw data, if not, unrecognized version will be on database, which causes query failure
-            user.save()
-            profile = is_seller_form.save(commit=False)   
-            profile.user = user 
-            profile.save()
-            flash_messages.info(request, 'Account created successfully')
-            return redirect('login')
+            try:
+                User.objects.get(email=user_form.cleaned_data.get('email'))
+            except User.DoesNotExist:
+                # usage refer to https://stackoverflow.com/questions/12848605/django-modelform-what-is-savecommit-false-used-for       
+                user = user_form.save(commit=False)
+                user.username = user.email
+                user.set_password(user_form.cleaned_data.get('password')) # use set_password to set the password as raw data, if not, unrecognized version will be on database, which causes query failure
+                user.save()
+                profile = is_seller_form.save(commit=False)   
+                profile.user = user 
+                profile.save()
+                flash_messages.success(request, 'Account created successfully')
+                return redirect('login')    
+            flash_messages.error(request, 'Email address exists')     
+            return redirect('register')
         else:
             print(user_form.errors)
             return redirect('index')
