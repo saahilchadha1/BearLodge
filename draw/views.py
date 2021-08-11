@@ -141,7 +141,21 @@ def listings_create(request):
     return render(request, 'draw/listings_create.html')
 
 def listing_edit(request, listing_id):
-    return render(request, 'draw/listing_edit.html')
+    listing = Listing.objects.get(pk=listing_id)
+    print(listing)
+    if request.method == "POST":
+        print('POST request')
+        form_data = request.POST
+        print(form_data['address'])
+        print(form_data['rent'])
+        print(form_data)
+        listing.street_address = form_data['address']
+        listing.monthly_price = form_data['rent']
+        listing.save()
+        return redirect('listings')
+    return render(request, 'draw/listing_edit.html', {
+        'listing': listing
+    })
 
 def messages(request):
     return render(request, 'draw/messages.html')
