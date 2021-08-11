@@ -132,7 +132,25 @@ def listing_detail(request, listing_id):
         })
 
 def saved(request):
-    return render(request, 'draw/saved.html')
+    def euclideanDistance(listing, queryLat, queryLong):
+        return ((float(listing.latitude) - queryLat) ** 2) + ((float(listing.longitude) - queryLong) ** 2)
+    listings = Profile.objects.get(user=request.user).saved_listings.all()
+    if request.method == 'POST':
+        response = requests.get("http://api.positionstack.com/v1/forward", 
+            params={
+                "access_key": "bcdcc39c43ee1cfcdd79d5da21acb0fe",
+                "query": request.POST['searchQuery'],
+                "region": "Berkeley, CA"
+            }
+        ).json()['data'][0]
+        queryLat = response['latitude']
+        queryLong = response['longitude']
+        listings = sorted(list(listings), key= lambda listing: euclideanDistance(listing, queryLat, queryLong))
+        return render(request, 'draw/saved.html', {'listings': listings})
+    else:
+        return render(request, 'draw/saved.html', {
+            'listings': listings
+            })
 
 def listings(request):
     return render(request, 'draw/listings.html')
