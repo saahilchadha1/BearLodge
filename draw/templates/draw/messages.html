@@ -2,10 +2,19 @@
 
 <!DOCTYPE html>
 <html>
+    <script>
+        var db = openDatabase("db", "1.0", "db", 65535);
+        db.transaction(function(transaction) {
+            var sql = "SELECT * FROM 'draw_message'";
+            transaction.executeSql(sql, undefined, function(){
+                alert("success");
+            }, function() {
+                alert("fail");
+            })
+        })
+    </script>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Messages</title>
-
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
@@ -15,6 +24,41 @@
 
 </head>
 <body>
+
+    <div class="title">
+        <div class="backButton">
+            <dev class="image"><img src="{% static './back.jpg' %}"/></dev>
+            <div class="msg">
+                Messages
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="list">
+        here
+    </div>
+    <div class="buttons">
+        <div class="home"> 
+            <dev class ="homeimage"><img src="{% static './homePage.jpg' %}"/></dev>
+        </div>
+        <div class="message">
+            <dev class="messageimage"><img src="{% static './messages.jpg' %}"/></dev>
+        </div>
+    </div>
+    <style>
+        .image{
+            float: left;
+        }
+        .msg {
+            float: left;
+        }
+        .homeimage {
+            float: left;
+        }
+        .message{
+            float: left;
+        }
+    </style>
 </body>
 
 </html>

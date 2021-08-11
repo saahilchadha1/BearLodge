@@ -1,14 +1,14 @@
 # chat/views.py
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from draw.models import Listing, Profile
+from draw.models import Listing, Profile, Message
 import requests
 from django.contrib import messages as flash_messages
 from django.shortcuts import render
 from draw.forms import CreateLoginForm, CreateUserForm, CreateIsSellerForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout #auth_login to avoid to shadowing since view name = login
 from django.shortcuts import redirect
-from draw.models import Profile
+from draw.models import Profile 
 from django.contrib.auth.models import User
 
       
@@ -161,4 +161,11 @@ def messages(request):
     return render(request, 'draw/messages.html')
 
 def messages_chat(request, user_id):
-    return render(request, 'draw/messages_chat.html')
+    ###Pull Data by UserID from current user
+    my_messages = Message.objects.filter(to_user = user_id)
+    ###Pull Data from user_id
+    others_messages = Message.objects.filter(from_user = user_id)
+
+    my_context = {"my": my_messages, "other": others_messages, "name": user_id}
+
+    return render(request, 'draw/messages_chat.html', my_context)
