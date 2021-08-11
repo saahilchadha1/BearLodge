@@ -8,25 +8,23 @@
     <title>Explore</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="{% static 'draw/custom.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
-    <style type="text/css">
-    </style>
     <script src="https://kit.fontawesome.com/084cdff28b.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container mt-3 mb-3">
         <ul class="nav nav-pills justify-content-center mb-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Explore</a>
+            <li class="nav-item px-4">
+                <a class="nav-link active" aria-current="page" href="#">Explore</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/saved">Saved</a>
+            <li class="nav-item px-4">
+                <a class="nav-link" href="/saved">Saved</a>
             </li>
-          </ul>
-          <div class="row justify-content-center mt-3">
+        </ul>
+        <div class="row justify-content-center mt-3">
             <div class="col-9">
                 <form action="/explore" method="POST" id="form">  {% csrf_token %}
                     <div class="input-group mb-3">
@@ -66,6 +64,19 @@
         {% endfor %}
         
     </div>
+	<nav class="navbar center fixed-bottom navbar-light mt-5 dark">
+		<div class="container">
+			<div class="d-flex flex-column w-100">
+				<div class="row justify-content-center">
+                    <div class="col text-center">
+                        <a class="btn" href="/"><i class="fas fa-home nav"></i></a>
+                    </div>
+                    <div class="col text-center">
+                        <a href="/messages" class="btn"><i class="fas fa-envelope nav"></i> </a>		
+                    </div>
+				</div>
+			</div>
+	</nav>
     <!-- <div class="container">
     </div> -->
 </body>

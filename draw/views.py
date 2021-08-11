@@ -6,14 +6,20 @@ import requests
 from django.contrib import messages as flash_messages
 from django.shortcuts import render
 from draw.forms import CreateLoginForm, CreateUserForm, CreateIsSellerForm
-from django.contrib.auth import authenticate, login as auth_login, logout #auth_login to avoid to shadowing since view name = login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout #auth_login to avoid to shadowing since view name = login
 from django.shortcuts import redirect
 from draw.models import Profile
 from django.contrib.auth.models import User
 
       
 def index(request):
-    return render(request, 'draw/index.html')
+    if request.user.is_anonymous:
+        return render(request, 'draw/index.html')
+    profile = Profile.objects.get(user = request.user)
+    if profile.is_seller:
+        return redirect('listings')
+    else:
+        return redirect('explore')
 
 def login(request):
     if request.method == 'POST':
@@ -39,6 +45,10 @@ def login(request):
 
     return render(request, 'draw/login.html', context)
 
+def logout(request):
+    auth_logout(request)
+    flash_messages.info(request, "Log out successful")
+    return redirect('index')
 
 def register(request):
     if request.method == 'POST':       

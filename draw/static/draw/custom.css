@@ -1,0 +1,19 @@
+a.nav-link.active:after {
+    content: '';
+    height: 5px;
+    background: #FFE487;
+    display: block;
+}
+a.nav-link {
+    background-color: white !important;
+    color: black !important;
+}
+body {
+    font-family: PT Sans Caption;
+}
+i.nav {
+    font-size: 25px;
+}
+.navbar {
+    border-top: 1px solid gray;
+}
