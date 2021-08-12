@@ -4,17 +4,86 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Create Listings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Create Listing</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/084cdff28b.js" crossorigin="anonymous"></script>
 
     <style type="text/css">
+
+        #add-photo-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 371px;
+            height: 204px;
+
+            background: #F2F2F2;
+            border: 4px solid rgba(163, 163, 163, 0.28);
+            box-sizing: border-box;
+            border-radius: 24px;
+        }
     </style>
 
 </head>
 <body>
+    <div class="container mt-3 mb-3" >
+        <ul class="nav nav-pills justify-content-left" style="margin: 0;">
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="#" style="padding: 0;">
+                    <h1><i class="bi-arrow-left-short" style="color: black"></i></h1>
+                </a>
+            </li>
+        </ul>
+        <div class="row justify-content-left" style="padding-left: 20px; border-bottom: 1.5px solid; margin-bottom: 30px; padding-top: 10px;">
+            <div class="col-9" >
+                <h6>Create New Listing</h6>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-bottom: 30px; padding-top: 10px;">
+            <div id="add-photo-box">
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <div style="display: flex; flex-direction: row; justify-content: center;"><i class="bi-camera" style="color: black; opacity: 50%; font-size: 70px;"></i></div>
+                    <h4 style="opacity: 50%;">Add Photos</h4>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row justify-content-left" style="margin-bottom: -15px; padding-top: 10px; padding-left: 55px;">
+                <h5>Address:</h5>
+            </div>
+            <div class="row justify-content-left" style="margin-bottom: 30px; padding-top: 10px; padding-left: 55px; padding-right: 55px;">
+                <input style="width: 100%;">
+            </div>
+            <div class="row justify-content-left" style="margin-bottom: -15px; padding-top: 10px; padding-left: 55px;">
+                <h5>Rent:</h5>
+            </div>
+            <div class="row justify-content-left" style="margin-bottom: 30px; padding-top: 10px; padding-left: 55px; padding-right: 55px;">
+                <input style="width: 100%;">
+            </div>
+            <div class="row justify-content-left" style="margin-bottom: -15px; padding-top: 10px; padding-left: 55px;">
+                <h5>Description:</h5>
+            </div>
+            <div class="row justify-content-left" style="margin-bottom: 30px; padding-top: 10px; padding-left: 55px; padding-right: 55px;">
+                <textarea style="width: 100%; height: 20vh;"></textarea>
+            </div>
+        </form>
+
+
+        <div class="nav-item " style="background-color: #74B5E5; margin: 20px; border-radius: 10px;">
+            <a aria-current="page" href="/listings/create" style="padding: 0;">
+                <h5 style="color: white; text-align: center; line-height: 55px;">Post Listing</h5>
+            </a>
+        </div>
+
+        
+    </div>
 </body>
 
 </html>
