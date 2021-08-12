@@ -5,7 +5,7 @@ from draw.models import Listing, Profile, Message
 import requests
 from django.contrib import messages as flash_messages
 from django.shortcuts import render
-from draw.forms import CreateLoginForm, CreateUserForm, CreateIsSellerForm
+from draw.forms import CreateLoginForm, CreateUserForm, CreateIsSellerForm, CreateListingForm
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout #auth_login to avoid to shadowing since view name = login
 from django.shortcuts import redirect
 from draw.models import Profile 
@@ -153,10 +153,31 @@ def saved(request):
             })
 
 def listings(request):
-    return render(request, 'draw/listings.html')
+    listings = Listing.objects.all()
+    sellers_listings = []
+    profile = list(Profile.objects.filter(user=request.user))
+    profile[0].refresh_from_db()
+    for listing in list(listings):
+        if (profile and listing.seller == profile[0].user):
+            sellers_listings.append(listing)
+    return render(request, 'draw/listings.html', {'sellersListings': sellers_listings})
 
 def listings_create(request):
-    return render(request, 'draw/listings_create.html')
+    if request.method == 'POST':
+        f = CreateListingForm(request.POST)
+        newListing = f.save(commit=False)
+        profile = list(Profile.objects.filter(user=request.user))
+        profile[0].refresh_from_db()
+        newListing.seller = profile[0].user
+        #TODO: take given street address and find lat and long. for now giving random numbers
+        newListing.latitude = 37.86759900
+        newListing.longitude = -122.26325200
+        #TODO: if we implement image upload functionality, get image url and assign it to the object
+        #for now just putting a default image
+        newListing.image_url = "https://drive.google.com/uc?id=1TegF4GTy78rK6xnrcH57_UQIeshtKm--"
+        newListing.save()
+    form = CreateListingForm()
+    return render(request, 'draw/listings_create.html', {'form': form})
 
 def listing_edit(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
