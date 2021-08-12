@@ -132,7 +132,25 @@ def listing_detail(request, listing_id):
         })
 
 def saved(request):
-    return render(request, 'draw/saved.html')
+    def euclideanDistance(listing, queryLat, queryLong):
+        return ((float(listing.latitude) - queryLat) ** 2) + ((float(listing.longitude) - queryLong) ** 2)
+    listings = Profile.objects.get(user=request.user).saved_listings.all()
+    if request.method == 'POST':
+        response = requests.get("http://api.positionstack.com/v1/forward", 
+            params={
+                "access_key": "bcdcc39c43ee1cfcdd79d5da21acb0fe",
+                "query": request.POST['searchQuery'],
+                "region": "Berkeley, CA"
+            }
+        ).json()['data'][0]
+        queryLat = response['latitude']
+        queryLong = response['longitude']
+        listings = sorted(list(listings), key= lambda listing: euclideanDistance(listing, queryLat, queryLong))
+        return render(request, 'draw/saved.html', {'listings': listings})
+    else:
+        return render(request, 'draw/saved.html', {
+            'listings': listings
+            })
 
 def listings(request):
     return render(request, 'draw/listings.html')
@@ -141,7 +159,21 @@ def listings_create(request):
     return render(request, 'draw/listings_create.html')
 
 def listing_edit(request, listing_id):
-    return render(request, 'draw/listing_edit.html')
+    listing = Listing.objects.get(pk=listing_id)
+    print(listing)
+    if request.method == "POST":
+        print('POST request')
+        form_data = request.POST
+        print(form_data['address'])
+        print(form_data['rent'])
+        print(form_data)
+        listing.street_address = form_data['address']
+        listing.monthly_price = form_data['rent']
+        listing.save()
+        return redirect('listings')
+    return render(request, 'draw/listing_edit.html', {
+        'listing': listing
+    })
 
 def messages(request):
     to_messages = Message.objects.filter(to_user = request.user.id)

@@ -34,8 +34,8 @@
 
     .photo-reel {
         margin-top: 50px;
-        height: 250px;
-        width: 250px;
+        height: 300px;
+        width: 300px;
     }
 
     .form-container {
@@ -81,23 +81,23 @@
 
 </head>
 <body>
-    <p id="p1">Add Photos</p>
-    <div class="photo-container">
-        <img class="photo-reel" src="https://drive.google.com/uc?id=17TkigL_LYT2zAUkkjgS-_CGIvbh0TVTK" />
-        <img class="photo-reel" src="https://drive.google.com/uc?id=1TegF4GTy78rK6xnrcH57_UQIeshtKm--" />
-        <img class="photo-reel" src="https://www.iconsdb.com/icons/preview/blue/camera-4-xxl.png" />
+    <div class="photo-container justify-content-center">
+        <img class="photo-reel" src="{{ listing.image_url }}" />
     </div>
 
     <div class="form-container">
-        <form>
+        <form action="" method="POST"> {% csrf_token %}
+            <label class="form-text" for="address">Image URL:</label><br>
+            <input class="form-control" type="text" id="image_url" name="image_url" value="{{ listing.image_url }}"><br>
+
             <label class="form-text" for="address">Address:</label><br>
-            <input class="form-control" type="text" id="address" name="address" placeholder="2539 Durant Ave."><br>
+            <input class="form-control" type="text" id="address" name="address" value="{{ listing.street_address }}"><br>
 
-            <label class="form-text" for="rent">Rent:</label><br>
-            <input class="form-control" type="text" id="rent" name="rent" placeholder="$600"><br>
+            <label class="form-text" for="rent">Monthly Rent:</label><br>
+            <input class="form-control" type="text" id="rent" name="rent" value="{{ listing.monthly_price }}"><br>
 
-            <label class="form-text" for="description">Description:</label><br>
-            <textarea class="form-control" id="description" name="description">We are currently looking for subletters to fill a spot in a double for the spring semester! Location: Above Trader Joe's on University</textarea>
+            <label class="form-text" for="description">HTML Description:</label><br>
+            <textarea class="form-control" id="description" name="description">{{ listing.description }}</textarea>
 
             <div class="photo-container" style="justify-content: center;">
                 <button id="submit-button" class="btn btn-primary btn-lg" type="submit" value="Submit">Save Changes</button>
