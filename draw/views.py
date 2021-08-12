@@ -144,13 +144,16 @@ def listing_edit(request, listing_id):
     return render(request, 'draw/listing_edit.html')
 
 def messages(request):
-    return render(request, 'draw/messages.html')
+    to_messages = Message.objects.filter(to_user = request.user.id)
+    my_context = {"current_user": request.user.id, "messages": to_messages}
+    return render(request, 'draw/messages.html', my_context)
 
 def messages_chat(request, user_id):
+
     ###Pull Data by UserID from current user
-    my_messages = Message.objects.filter(to_user = user_id)
+    my_messages = Message.objects.filter(to_user = user_id).filter(from_user = request.user.id)
     ###Pull Data from user_id
-    others_messages = Message.objects.filter(from_user = user_id)
+    others_messages = Message.objects.filter(from_user = user_id).filter(to_user = request.user.id)
 
     my_context = {"my": my_messages, "other": others_messages, "name": user_id}
 

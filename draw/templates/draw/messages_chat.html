@@ -46,14 +46,10 @@
             document.getElementById("message-area").innerHTML += html;
             document.getElementById("typing-box").value = "";
         }
-
-        $(document).ready(function() {  var html = '<div class = "message-box my-message-box">' + '<div class = "message my-message">' + "test" + '</div>' + '<div class = "separator"></div>' + '</div>';
-            document.getElementById("message-area").innerHTML += html;
-            document.getElementById("typing-box").value = "";});
     </script>
     <div class= "header">
         <div class="back" onclick="window.history.go(-1); return false;"><img src="{% static './back.jpg' %}" width="50px"/></div>
-        <h1> <center>Owner</center></h1>
+        <h1> <center>USERID: {{name}}</center></h1>
     </div>
     
     <div class="message-area" id = "message-area">
