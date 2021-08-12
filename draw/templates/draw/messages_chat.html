@@ -3,6 +3,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+/* width */
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+
+/* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+ 
+/* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888; 
+    }
+
+/* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    }
+    </style>
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Messages Chat</title>
 
@@ -15,6 +39,111 @@
 
 </head>
 <body>
+    <script>
+        function sendMessage() {
+            var message = document.getElementById("typing-box").value;
+            var html = '<div class = "message-box my-message-box">' + '<div class = "message my-message">' + message + '</div>' + '<div class = "separator"></div>' + '</div>';
+            document.getElementById("message-area").innerHTML += html;
+            document.getElementById("typing-box").value = "";
+        }
+    </script>
+    <div class= "header">
+        <div class="back" onclick="window.history.go(-1); return false;"><img src="{% static './back.jpg' %}" width="50px"/></div>
+        <h1> <center>USERID: {{name}}</center></h1>
+    </div>
+    
+    <div class="message-area" id = "message-area">
+        {% for mes in my %}
+        <div class = "message-box my-message-box">
+            <div class = "message my-message">
+                {{mes.body}}
+            </div>
+            <div class = "separator"></div>
+        </div>
+        {% endfor %}
+
+        {% for mes in other %}
+        <div class = "message-box others-message-box">
+            <div class = "message others-message">
+                {{mes.body}}
+            </div>
+            <div class = "separator"></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="typing-area">
+        <textarea class="typing-box" id = "typing-box">
+        </textarea>
+        <div class="send-button" onclick="sendMessage()"> <img src="{% static './send.jpg' %}" width="30px"/> </div>
+    </div>
+    <style>
+        html{ height: 100%; width: 100%; margin: 0;}
+        body{padding: auto; width: 20%; height: 90%; border: 5px solid gray; margin-left: 40%; margin-right: 40%;}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-right: 15%;
+        }
+        .header {
+            height: 6%;
+            padding: 4px;
+        }
+        .message-area {
+            margin-top: 15px;
+            height: 87%;
+            padding: 3px;
+            background-image: url("{% static './background.png' %}")
+        }
+        .typing-area {
+            margin-top: 4px;
+            padding: 4px;
+            height: 8.2%;
+        }
+        .typing-box {
+            width: 85%;
+            height: 50%;
+            resize: none;
+            padding: 3px;
+            float: left;
+        }
+
+        .send-button {
+            border: 0;
+            width: 3%;
+            height: 3%;
+            font-size: 18px;
+            float: left;
+            margin-left: 3px;
+            margin-bottom: 5px;
+        }
+
+        .message {
+            max-width: 70%;
+            border-radius: 5%;
+            padding: 5px;
+        }
+
+        .my-message {
+            float: right;
+            background-color: cadetblue;
+        }
+        .others-message {
+            float: left;
+            background-color: goldenrod;
+        }
+        .separator {
+            width: 100%;
+            height: 8px;
+            float: left;
+        }
+        .back{
+            float: left;
+        }
+        
+    </style>
 </body>
 
 </html>

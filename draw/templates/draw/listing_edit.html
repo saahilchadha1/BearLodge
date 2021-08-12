@@ -11,10 +11,101 @@
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
 
     <style type="text/css">
+
+    #p1 {
+        margin: 0;
+        margin-top: 188px;
+        margin-bottom: 20px;
+        text-align: center;
+
+        font-family: PT Sans Caption;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 100px;
+        line-height: 39px;
+    }
+
+    .photo-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 50px;
+    }
+
+    .photo-reel {
+        margin-top: 50px;
+        height: 300px;
+        width: 300px;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding:50px;
+    }
+
+    .form-text {
+        margin-top: 50px;
+        text-align: left;
+
+        font-family: PT Sans Caption;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 60px;
+        line-height: 39px;
+    }
+    
+    .form-control {
+        font-size: 40px;
+        border-radius: 25px;
+        border: 5px solid;
+    }
+
+    #description {
+        height: 25vh;
+    }
+
+    .btn-lg {
+        height: 150px;
+        width: 500px;
+        font-size: 50px;
+    }
+
     </style>
+
+    <script>
+        var link = window.location.href;
+        var reqId = link.split('/')[link.split('/').length - 1];
+    </script>
 
 </head>
 <body>
+    <div class="photo-container justify-content-center">
+        <img class="photo-reel" src="{{ listing.image_url }}" />
+    </div>
+
+    <div class="form-container">
+        <form action="" method="POST"> {% csrf_token %}
+            <label class="form-text" for="address">Image URL:</label><br>
+            <input class="form-control" type="text" id="image_url" name="image_url" value="{{ listing.image_url }}"><br>
+
+            <label class="form-text" for="address">Address:</label><br>
+            <input class="form-control" type="text" id="address" name="address" value="{{ listing.street_address }}"><br>
+
+            <label class="form-text" for="rent">Monthly Rent:</label><br>
+            <input class="form-control" type="text" id="rent" name="rent" value="{{ listing.monthly_price }}"><br>
+
+            <label class="form-text" for="description">HTML Description:</label><br>
+            <textarea class="form-control" id="description" name="description">{{ listing.description }}</textarea>
+
+            <div class="photo-container" style="justify-content: center;">
+                <button id="submit-button" class="btn btn-primary btn-lg" type="submit" value="Submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+    
 </body>
 
 </html>

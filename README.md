@@ -78,10 +78,9 @@ To access database data from an HTML template, you need to pass it through the v
 Part 1 index, login, register -- Documentation
 
 ## unfinished features
-1. check if user has a Berkeley email address. For buyer, they have to have one.
-        But for seller, they don't need to have 
-2. logout feature
-3. page layout modification -- back buttons, html && css && js of the pages
+
+1. logout feature
+
 
 ## Extra Installation: 
 django-widget-tweaks 

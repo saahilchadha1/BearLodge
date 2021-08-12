@@ -4,8 +4,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Messages</title>
-
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
@@ -15,6 +13,77 @@
 
 </head>
 <body>
+    <div class="title">
+        <div class="backButton">
+            <dev class="image" onclick="window.history.go(-1); return false;"><img src="{% static './back.jpg' %}" width="50px"/></dev>
+        </div>
+        <div class="msg">
+            <center>Messages</center>
+        </div>
+    </div>
+    <br>
+    <div class="list">
+        {% for m in messages %}
+        <a class="msg"  href="/messages/{{m.from_user_id}}" style="text-decoration:none">
+            {{m.from_user}}
+        </a>
+        <br><br>
+        {% endfor %}
+    </div>
+    <div class="buttons">
+        <div class="home"> 
+            <a class ="homeimage" href="/"><img src="{% static './homePage.jpg' %}" width="50px"/></a>
+        </div>
+        <div class="spacing">
+            EMPTYSPACEEEEEEEEEEEEEEEEEEEEEEE
+        </div>
+        <div class="message">
+            <a class="messageimage" href="/messages"><img src="{% static './messages.jpg' %}" width="50px"/></a>
+        </div>
+    </div>
+    <style>
+        a { text-decoration: none; color: black;}
+        a:link {color: black;}      /* unvisited link */
+       a:visited {color: black;}   /* visited link */
+       a:hover {color: black;}     /* mouse over link */
+       a:active {color: black;}    /* selected link */
+        html{
+            height: 100%;
+        }
+        body{
+            height: 90%; width: 20%; background-color: white; border: 5px solid gray;margin-left: 40%; margin-right: 40%;
+        }
+        .title{
+            height:30px;
+        }
+        .backButton{
+            float: left;
+        }
+        .image{
+            float: left;
+        }
+        .msg {
+            font-size: 30px;
+            float: left;
+            text-align: center;
+            margin-left: 20%;
+        }
+        .homeimage {
+            float: left;
+        }
+        .message{
+            float: left;
+        }
+        .list{
+            height: 87%;
+            background-color: rgb(0, 255, 234);
+            background-image: url("{% static './background.png' %}")
+        }
+        .spacing{
+            float: left;
+            color: white;
+        }
+    </style>
 </body>
 
 </html>
