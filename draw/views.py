@@ -187,6 +187,8 @@ def messages_chat(request, user_id):
     ###Pull Data from user_id
     others_messages = Message.objects.filter(from_user = user_id).filter(to_user = request.user.id)
 
-    my_context = {"my": my_messages, "other": others_messages, "name": user_id}
+    messages = my_messages.union(others_messages).order_by('sent_time')
+
+    my_context = {"my": my_messages, "other": others_messages, "name": user_id, "messages": messages}
 
     return render(request, 'draw/messages_chat.html', my_context)

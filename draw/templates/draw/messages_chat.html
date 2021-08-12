@@ -53,22 +53,22 @@
     </div>
     
     <div class="message-area" id = "message-area">
-        {% for mes in my %}
-        <div class = "message-box my-message-box">
-            <div class = "message my-message">
-                {{mes.body}}
+        {% for mes in messages %}
+            {% if mes.to_user_id == name %}
+                <div class = "message-box my-message-box">
+                    <div class = "message my-message">
+                        {{mes.body}}
+                    </div>
+                    <div class = "separator"></div>
+                </div>
+            {% else %}
+            <div class = "message-box others-message-box">
+                <div class = "message others-message">
+                    {{mes.body}}
+                </div>
+                <div class = "separator"></div>
             </div>
-            <div class = "separator"></div>
-        </div>
-        {% endfor %}
-
-        {% for mes in other %}
-        <div class = "message-box others-message-box">
-            <div class = "message others-message">
-                {{mes.body}}
-            </div>
-            <div class = "separator"></div>
-        </div>
+            {% endif %}
         {% endfor %}
     </div>
 
