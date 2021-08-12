@@ -120,7 +120,16 @@ def saved(request):
     return render(request, 'draw/saved.html')
 
 def listings(request):
-    return render(request, 'draw/listings.html')
+    listings = Listing.objects.all()
+    sellers_listings = []
+    profileQuery = Profile.objects.filter(user=request.user)
+    profile = list(Profile.objects.filter(user=request.user))
+    profile[0].refresh_from_db()
+    for listing in list(listings):
+        print(listing.seller)
+        if (profile and listing.seller == profile[0].user):
+            sellers_listings.append(listing)
+    return render(request, 'draw/listings.html', {'sellersListings': sellers_listings})
 
 def listings_create(request):
     return render(request, 'draw/listings_create.html')
