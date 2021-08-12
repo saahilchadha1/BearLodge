@@ -5,7 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Listings</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -16,6 +15,15 @@
     <script src="https://kit.fontawesome.com/084cdff28b.js" crossorigin="anonymous"></script>
 
     <style type="text/css">
+        .stretched-link::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            content: "";
+        }
     </style>
 
 </head>
@@ -55,7 +63,7 @@
                         <img src="{{ listing.image_url }}" alt="Card image cap" width="100%">
                     </div>
                 </div>
-                <a href="/explore/{{ listing.pk }}" class="stretched-link"></a>
+                <a href="/listing/{{ listing.pk }}" class="stretched-link"></a>
             </div>
         </div>
         {% endfor %}
